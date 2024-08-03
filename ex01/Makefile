@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lionelulm <lionelulm@student.42.fr>        +#+  +:+       +#+         #
+#    By: liulm <liulm@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:03:14 by liulm             #+#    #+#              #
-#    Updated: 2024/08/03 01:36:10 by lionelulm        ###   ########.fr        #
+#    Updated: 2024/08/03 11:53:09 by liulm            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,19 +30,17 @@ OBJS =	${SRCS:.c=.o}
 
 .c.o:	${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
 
-${NAME}: ${OBJS}
+${NAME}:	${OBJS}
 		ar rcs ${NAME} ${OBJS}
 
-all:
-			${NAME}
+all: ${NAME}
 
 clean:
-			${RM} ${OBJS}
+		rm -f ${OBJS}
 
-fclean:		clean
-			${RM} ${NAME}
+fclean:	clean
+		rm -f ${NAME}
 
-re:
-			fclean all
+re:			fclean all
 
 .PHONY: all clean fclean re
