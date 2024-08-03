@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: liulm <liulm@student.42.fr>                +#+  +:+       +#+         #
+#    By: lionelulm <lionelulm@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:03:14 by liulm             #+#    #+#              #
-#    Updated: 2024/08/01 12:16:37 by liulm            ###   ########.fr        #
+#    Updated: 2024/08/03 01:36:10 by lionelulm        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,30 +14,33 @@ NAME =		libft.a
 
 CC =		cc
 
-FLAGS =		-Wall -Wextra -Werror
+CFLAGS =		-Wall -Wextra -Werror
 
 RM =		rm -f
 
-HEADER =	includes/ft.h
+HEADER =	includes/
 
-SRCS =	ft_putchar.c		\
-		ft_swap.c			\
-		ft_putstr.c			\
-		ft_strlen.c			\
-		ft_strcmp.c
+SRCS =	srcs/ft_putchar.c			\
+		srcs/ft_swap.c				\
+		srcs/ft_putstr.c			\
+		srcs/ft_strlen.c			\
+		srcs/ft_strcmp.c
 
-OBJS =	$(SRCS: .c=.o)
+OBJS =	${SRCS:.c=.o}
 
-all:	$(NAME)
+.c.o:	${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
 
-$(NAME): $(OBJS)
-		$(CC) $(FlAGS) $(OBJS) -o $(NAME)
+${NAME}: ${OBJS}
+		ar rcs ${NAME} ${OBJS}
+
+all:
+			${NAME}
 
 clean:
-			rm -f $(OBJS)
+			${RM} ${OBJS}
 
 fclean:		clean
-			rm -f $(NAME)
+			${RM} ${NAME}
 
 re:
 			fclean all
