@@ -18,7 +18,7 @@ CFLAGS =		-Wall -Wextra -Werror
 
 RM =		rm -f
 
-HEADER =	includes/
+HEADER =	includes/ft.h
 
 SRCS =	srcs/ft_putchar.c			\
 		srcs/ft_swap.c				\
@@ -30,7 +30,7 @@ OBJS =	${SRCS:.c=.o}
 
 .c.o:	${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
 
-${NAME}:	${OBJS}
+${NAME}: ${OBJS}
 		ar rcs ${NAME} ${OBJS}
 
 all: ${NAME}
@@ -41,6 +41,6 @@ clean:
 fclean:	clean
 		rm -f ${NAME}
 
-re:			fclean all
+re: fclean all
 
 .PHONY: all clean fclean re
