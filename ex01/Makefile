@@ -18,7 +18,7 @@ CFLAGS =		-Wall -Wextra -Werror
 
 RM =		rm -f
 
-HEADER =	includes/ft.h
+HEADER =	includes
 
 SRCS =	srcs/ft_putchar.c			\
 		srcs/ft_swap.c				\
@@ -28,10 +28,12 @@ SRCS =	srcs/ft_putchar.c			\
 
 OBJS =	${SRCS:.c=.o}
 
-.c.o:	${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
+.c.o:
+		${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I ${HEADER}
 
 ${NAME}: ${OBJS}
-		ar rcs ${NAME} ${OBJS}
+		ar rc ${NAME} ${OBJS}
+		ranlib ${NAME}
 
 all: ${NAME}
 
